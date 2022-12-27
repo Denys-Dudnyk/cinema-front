@@ -11,8 +11,7 @@ const nextConfig = {
 			{
 				source: '/api/:path*',
 				destination: 'http://localhost:4200/api/:path*',
-				destination:
-					'https://cinema-api-production.up.railway.app:$/api/:path*',
+				// destination:'https://cinema-api-production.up.railway.app:$/api/:path*',
 			},
 			{
 				source: '/uploads/:path*',
