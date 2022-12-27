@@ -1,0 +1,28 @@
+import Link from 'next/link'
+import { FC } from 'react'
+
+import MovieItem from './MovieItem'
+import styles from './MovieList.module.scss'
+import { IMovieList } from './movie-list.interface'
+
+const MovieList: FC<IMovieList> = ({ link, title, movies }) => {
+	return (
+		<div className={styles.list}>
+			<div className={styles.heading}>{title}</div>
+			{movies.slice(0, 3).map((movie) => (
+				<MovieItem
+					key={movie._id}
+					movie={movie}
+					movieId={movie._id}
+					slug={movie.slug}
+				/>
+			))}
+			<Link href={link}>
+				<a className={styles.button}>
+					{link === '/trending' ? 'All trending movies' : 'All popular movies'}
+				</a>
+			</Link>
+		</div>
+	)
+}
+export default MovieList
