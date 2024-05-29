@@ -10,7 +10,7 @@ const nextConfig = {
 		return [
 			{
 				source: '/api/:path*',
-				destination: 'https://cinemaapi-production.up.railway.app/:path*',
+				destination: 'https://cinemaapi-production.up.railway.app/api/:path*',
 			},
 			{
 				source: '/uploads/:path*',
