@@ -10,11 +10,11 @@ const nextConfig = {
 		return [
 			{
 				source: '/api/:path*',
-				destination: 'https://cinema-api-production.up.railway.app/:path*',
+				destination: 'https://cinemaapi-production.up.railway.app/:path*',
 			},
 			{
 				source: '/uploads/:path*',
-				destination: 'https://cinema-api-production.up.railway.app/uploads/:path*',
+				destination: 'https://cinemaapi-production.up.railway.app/uploads/:path*',
 				
 			},
 		]
