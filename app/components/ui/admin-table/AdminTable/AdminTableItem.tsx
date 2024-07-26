@@ -10,7 +10,11 @@ const AdminTableItem: FC<IAdminTableItem> = ({ removeHandler, tableItem }) => {
 			{tableItem.items.map((value) => (
 				<div key={value}>{value}</div>
 			))}
-			<AdminActions editUrl={tableItem.editUrl} removeHandler={removeHandler} />
+			<AdminActions
+				userId={tableItem._id}
+				editUrl={tableItem.editUrl}
+				removeHandler={removeHandler}
+			/>
 		</div>
 	)
 }

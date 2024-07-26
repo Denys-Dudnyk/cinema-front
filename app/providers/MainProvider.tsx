@@ -11,6 +11,7 @@ import { store } from '@/store/store'
 import AuthProvider from './AuthProvider/AuthProvider'
 import HeadProvider from './HeadProvider/HeadProvider'
 import ReduxToast from './ReduxToast'
+import { Toaster } from 'react-hot-toast'
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -26,6 +27,7 @@ const MainProvider: FC<TypeComponentAuthFields> = ({ children, Component }) => {
 			<Provider store={store}>
 				<QueryClientProvider client={queryClient}>
 					<ReduxToast />
+					<Toaster />
 					<AuthProvider Component={Component}>
 						<Layout>{children}</Layout>
 					</AuthProvider>

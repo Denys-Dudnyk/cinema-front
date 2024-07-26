@@ -1,4 +1,6 @@
+import CustomToast from 'providers/Toast'
 import { FC } from 'react'
+import toast from 'react-hot-toast'
 
 import { useAuth } from '@/hooks/useAuth'
 
@@ -14,6 +16,7 @@ const AuthItems: FC = () => {
 			{user ? (
 				<>
 					<MenuItem
+						onClick={() => {}}
 						item={{
 							icon: 'MdSettings',
 							link: '/profile',
@@ -23,6 +26,7 @@ const AuthItems: FC = () => {
 
 					{user?.isAdmin && (
 						<MenuItem
+							onClick={() => {}}
 							item={{
 								icon: 'MdAdminPanelSettings',
 								link: getAdminHomeUrl(),
@@ -34,6 +38,9 @@ const AuthItems: FC = () => {
 				</>
 			) : (
 				<MenuItem
+					onClick={() =>
+						toast.custom((t) => <CustomToast t={t} />, { duration: 5000 })
+					}
 					item={{
 						icon: 'MdLogin',
 						link: '/auth',

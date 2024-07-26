@@ -1,4 +1,6 @@
+import CustomToast from 'providers/Toast'
 import { FC, useLayoutEffect, useRef } from 'react'
+import toast from 'react-hot-toast'
 import StarRating from 'react-star-rating-component'
 
 import AuthButton from '@/ui/video-player/AuthPlaceholder/AuthButton'
@@ -40,7 +42,12 @@ const RateMovie: FC<IRateMovie> = ({ movieId, slug }) => {
 					)}
 				</>
 			) : (
-				<AuthButton slug={slug} />
+				<AuthButton
+					slug={slug}
+					onClick={() =>
+						toast.custom((t) => <CustomToast t={t} />, { duration: 5000 })
+					}
+				/>
 			)}
 		</div>
 	)

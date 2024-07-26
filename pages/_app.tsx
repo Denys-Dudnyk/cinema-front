@@ -20,6 +20,7 @@ function MyApp({ Component, pageProps }: TypeAppProps) {
 		<MainProvider Component={Component}>
 			<>
 				<DynamicComponentWithNoSSR />
+
 				<Component {...pageProps} />
 			</>
 		</MainProvider>

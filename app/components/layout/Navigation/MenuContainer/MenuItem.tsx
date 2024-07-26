@@ -8,13 +8,17 @@ import MaterialIcon from '@/components/ui/MaterialIcon'
 import styles from './Menu.module.scss'
 import { IMenuItem } from './menu.interface'
 
-const MenuItem: FC<{ item: IMenuItem }> = ({ item }) => {
+const MenuItem: FC<{ item: IMenuItem; onClick?: () => void }> = ({
+	item,
+	onClick,
+}) => {
 	const { asPath } = useRouter()
 	return (
 		<li
 			className={cn({
 				[styles.active]: asPath === item.link,
 			})}
+			onClick={onClick}
 		>
 			<Link href={item.link}>
 				<a className={styles.hover}>

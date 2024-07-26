@@ -1,5 +1,4 @@
-import { error } from 'console'
-import { ChangeEvent, useMemo, useState } from 'react'
+import { ChangeEvent, useEffect, useMemo, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { toastr } from 'react-redux-toastr'
 
@@ -19,6 +18,21 @@ export const useUsers = () => {
 	const [searchTerm, setSearchTerm] = useState('')
 
 	const debouncedSearch = useDebounce(searchTerm, 500)
+
+	const [currentUserId, setCurrentUserId] = useState<string | null>(null)
+
+	useEffect(() => {
+		const fetchProfile = async () => {
+			try {
+				const { data } = await UserService.getProfile()
+				setCurrentUserId(data._id)
+			} catch (error) {
+				console.error('Failed to fetch profile', error)
+			}
+		}
+
+		fetchProfile()
+	}, [])
 
 	const queryData = useQuery(
 		['Users list', debouncedSearch],
@@ -55,12 +69,28 @@ export const useUsers = () => {
 		}
 	)
 
+	const handleDeleteUser = async (userId: string) => {
+		if (userId === currentUserId) {
+			toastr.error('Delete user', 'You cannot delete the current user')
+			return
+		}
+
+		const adminUserId = process.env.NEXT_PUBLIC_SUPER_ADMIN_ID
+
+		if (userId === adminUserId) {
+			toastr.error('Delete user', 'You have no rights to delete this user')
+			return
+		}
+
+		await deleteAsync(userId)
+	}
+
 	return useMemo(
 		() => ({
 			handleSearch,
 			...queryData,
 			searchTerm,
-			deleteAsync,
+			deleteAsync: handleDeleteUser,
 		}),
 		[queryData, searchTerm, deleteAsync]
 	)

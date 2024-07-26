@@ -1,5 +1,7 @@
 import cn from 'classnames'
+import CustomToast from 'providers/Toast'
 import { FC, useRef, useState } from 'react'
+import toast from 'react-hot-toast'
 
 import { useAuth } from '@/hooks/useAuth'
 import { useOnClickOutside } from '@/hooks/useOutside'
@@ -102,7 +104,12 @@ const VideoPlayer: FC<IVideoPlayer> = ({ slug, videoSource }) => {
 					</div>
 				</>
 			) : (
-				<AuthPlaceholder slug={slug} />
+				<AuthPlaceholder
+					slug={slug}
+					onClick={() =>
+						toast.custom((t) => <CustomToast t={t} />, { duration: 5000 })
+					}
+				/>
 			)}
 		</div>
 	)

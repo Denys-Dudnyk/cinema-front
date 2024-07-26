@@ -1,5 +1,6 @@
 {
 	"name": "front",
+	"homepage": ".",
 	"author": {
 		"email": "dydnikdenis2015@gmail.com",
 		"name": "Denys Dudnyk",
@@ -7,7 +8,6 @@
 	},
 	"description": "Online-Cinema Application",
 	"version": "0.1.0",
-	"private": true,
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
@@ -32,6 +32,7 @@
 		"react-dom": "18.2.0",
 		"react-draft-wysiwyg": "^1.15.0",
 		"react-hook-form": "^7.39.5",
+		"react-hot-toast": "^2.4.1",
 		"react-icons": "^4.6.0",
 		"react-loading-skeleton": "^3.1.0",
 		"react-query": "^3.39.2",
