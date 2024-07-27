@@ -12,6 +12,7 @@ export const useProfile = (setValue: UseFormSetValue<IProfileInput>) => {
 	const { isLoading } = useQuery(['profile'], () => UserService.getProfile(), {
 		onSuccess: ({ data }) => {
 			setValue('email', data.email)
+			setValue('_id', data._id)
 		},
 
 		onError: (error) => {
@@ -32,7 +33,14 @@ export const useProfile = (setValue: UseFormSetValue<IProfileInput>) => {
 		}
 	)
 
+	const adminUserId = process.env.NEXT_PUBLIC_SUPER_ADMIN_ID
+
 	const onSubmit: SubmitHandler<IProfileInput> = async (data) => {
+		if (data._id === adminUserId) {
+			toastr.error('Edit user', 'You have no rights to edit this user')
+			return
+		}
+
 		await mutateAsync(data)
 	}
 

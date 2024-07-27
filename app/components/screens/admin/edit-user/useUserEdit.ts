@@ -47,7 +47,13 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
 		}
 	)
 
+	const adminUserId = process.env.NEXT_PUBLIC_SUPER_ADMIN_ID
+
 	const onSubmit: SubmitHandler<IUserEditInput> = async (data) => {
+		if (data._id === adminUserId) {
+			toastr.error('Edit user', 'You have no rights to edit this user')
+			return
+		}
 		await mutateAsync(data)
 	}
 
